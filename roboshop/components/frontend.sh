@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-# Check whether you're running this script with sudo or a root user or not.If not, exit the script
+# Checks whether you're running this script with sudo or a root user or not.If not, exit the script
 ID=$(id -u)
 if [ $ID -ne 0 ] ; then 
     echo -e "\e[31m This script is expected to run with sudo or as a root user \e[0m   \n\t Ex:  bash scriptName compName"
@@ -46,6 +45,12 @@ mv ${COMPONENT}-main/* .   &>>  $LOGFILE
 mv static/* .        &>>  $LOGFILE
 rm -rf ${COMPONENT}-main README.md    &>>  $LOGFILE  
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
+stat $?
+
+echo -n "Updating Reverse Proxy File: "
+    for i in catalogue user cart shipping payment; do 
+        sed -i -e "/$i/s/localhost/$i.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
+    done
 stat $?
 
 echo -n "Retarting the Web Server: "
