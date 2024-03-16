@@ -87,7 +87,7 @@ cat ec2.json | jq .Instancesp[].PrivateIpAddress
             "Tags": [
                 {
                     "Key": "Name",
-                    "Value": "$COMPONENT"
+                    "Value": "$PRIVATE_IP"
                 }
             ],
             "VirtualizationType": "hvm",
