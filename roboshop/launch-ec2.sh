@@ -6,11 +6,11 @@ AMI_ID="ami-072983368f2a6eab5"
 SGID="sg-0ce45f51a1992b5ed"               # Create your own Security Group that allows allows all and then add your SGID 
 HOSTEDZONE_ID="Z0986199XRTSEHVIS3WM"     # User your private zone id
 COMPONENT=$1
-
+ENV=$2
 COLOR="\e[35m"
 NOCOLOR="\e[0m"
 
-if [ -z $1 ] ; then 
+if [ -z $1 ] || [ -z $2 ]; then 
     echo -e "\e[31m   COMPONENT & ENV ARE NEEDED: \e[0m"
     echo -e "\e[36m \t\t Example Usage : \e[0m  bash launch-ec2 dev ratings"
     exit 1
